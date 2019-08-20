@@ -6,6 +6,7 @@ import * as ReactDOM from "react-dom";
 import "bootstrap"
 // import "./index.scss"
 import { ipcRenderer } from "electron";
+import { Titlebar } from "./components/Titlebar/Titlebar";
 
 // Renderer
 (() => {
@@ -60,7 +61,7 @@ ipcRenderer.on("init:UserPref", (event: any, email: string, accessPermissions: s
 class App extends React.Component<{}, {}> {
     render() {
         return ([
-            <div>Hello</div>
+           <Titlebar label="Humble"/> 
         ]);
     }
 }

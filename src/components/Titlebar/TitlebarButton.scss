@@ -1,0 +1,47 @@
+@import "../theme";
+
+.titlebar-button {
+    display: inline-block;
+    height: 100%;
+    width: 40px;
+    padding: 0;
+}
+
+.titlebar-button:hover {
+    background-color: hsla(0,0%,100%,.1);
+}
+
+#close-window.titlebar-button:hover {
+    background-color: #bb0000;
+}
+
+#close-window.titlebar-button:hover .icon {
+    background-color: #fff;
+}
+
+.icon {
+    width: 100%;
+    height: 100%;
+    background-color: $titlebar-button;
+    margin: 0;
+}
+
+.icon-min {
+    -webkit-mask: url("../../../assets/Minimize.svg") no-repeat 50% 50%;
+    -webkit-mask-size: 12px;
+}
+
+.icon-max {
+    -webkit-mask: url("../../../assets/Maximize.svg") no-repeat 50% 50%;
+    -webkit-mask-size: 12px;
+}
+
+.icon-unmax {
+    -webkit-mask: url("../../../assets/Unmaximize.svg") no-repeat 50% 50%;
+    -webkit-mask-size: 12px;
+}
+
+.icon-close {
+    -webkit-mask: url("../../../assets/Close.svg") no-repeat 50% 50%;
+    -webkit-mask-size: 12px;
+}

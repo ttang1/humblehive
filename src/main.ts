@@ -4,21 +4,22 @@ import * as url from "url";
 import * as fs from "fs";
 import { userInfo } from "os";
 
-let loadWin: BrowserWindow;
-let loginWin: BrowserWindow;
+// let loadWin: BrowserWindow;
+// let loginWin: BrowserWindow;
 let mainWin: BrowserWindow;
 
 enum Permissions {
     Admin = "Admin",
     Readonly = "Readonly"
 }
+
 interface UserConfig {
     firstName?: string,
     lastName?: string,
     email: string,
     accessPermissions: Permissions
 }
-
+/*
 let createLoadAppWindow = () => {
     loadWin = new BrowserWindow({
         width: 320,
@@ -34,12 +35,10 @@ let createLoadAppWindow = () => {
         slashes: true
     }));
 
-    // loadWin.once('ready-to-show', () => {
-    //     loadWin.show();
-    // });
     return loadWin;
 }
-
+*/
+/*
 let createLoginWindow = () => {
     loginWin = new BrowserWindow({
         width: 800, // 50rem
@@ -59,12 +58,10 @@ let createLoginWindow = () => {
         slashes: true
     }));
 
-    // loginWin.once('ready-to-show', () => {
-    //     loginWin.show();
-    // });
     return loginWin;
 }
 
+*/
 let createWindow = () => {
     mainWin = new BrowserWindow({
         width: 1200,
@@ -85,27 +82,28 @@ let createWindow = () => {
         slashes: true
     }));
 
-    // mainWin.once('ready-to-show', () => {
-    //     mainWin.show()
-    // });
     return mainWin;
 }
 
 
-let configFile = app.getAppPath() + "\\silk.config.json";
+// let configFile = app.getAppPath() + "\\silk.config.json";
 
 // INIT
 app.once('ready', () => {
+    mainWin = createWindow();
+    mainWin.once("ready-to-show", () => {
+        mainWin.show();
+    });
+    /*
     loadWin = createLoadAppWindow();
     loadWin.once('ready-to-show', () => {
         loadWin.show();
     });
-
     fs.access(configFile, err => {
         if (!err) {
             let filebuffer = fs.readFileSync(configFile, "utf8");
             let userPref = JSON.parse(filebuffer);
-
+            
             mainWin = createWindow();
             mainWin.once('ready-to-show', () => {
                 setTimeout(() => {
@@ -113,7 +111,7 @@ app.once('ready', () => {
                     mainWin.show();
                 }, 3000);
             });
-
+            
             mainWin.once("show", () => {
                 mainWin.webContents.send("init:UserPref", userPref.email, userPref.accessPermissions);
             })
@@ -127,6 +125,7 @@ app.once('ready', () => {
             });
         }
     });
+    */
 });
 
 // macOS
@@ -143,6 +142,7 @@ app.on('activate', () => {
     }
 });
 
+/*
 // on MainWin
 ipcMain.on("json:submit", (event: any, data: any) => {
     let raw = fs.readFileSync(data, "utf8");
@@ -150,7 +150,9 @@ ipcMain.on("json:submit", (event: any, data: any) => {
 
     mainWin.webContents.send("json:receive", user.firstName, user.lastName);
 });
+*/
 
+/* user pref prompted from main
 ipcMain.on("reset:UserPref", (e: any, d: any) => {
     loginWin = createLoginWindow();
     loginWin.once('ready-to-show', () => {
@@ -158,7 +160,9 @@ ipcMain.on("reset:UserPref", (e: any, d: any) => {
         loginWin.show();
     });
 });
+*/
 
+/*
 // on LoginWin
 ipcMain.on("register:Email", (e: any, d: any) => {
     let userPref: any;
@@ -187,3 +191,4 @@ ipcMain.on("register:Email", (e: any, d: any) => {
         mainWin.webContents.send("init:UserPref", userPref.email, userPref.accessPermissions);
     });
 });
+*/
